@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'store_account',
+        'passwords' => 'store_accounts',
     ],
 
     /*
@@ -36,10 +36,10 @@ return [
     */
 
     'guards' => [
-        'web' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ],
+        'store_account' => [
+            'driver'   => 'session',
+            'provider' => 'store_accounts',
+        ]
     ],
 
     /*
@@ -60,15 +60,10 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'store_accounts' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model'  => \App\Models\Store\StoreAccount::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*
@@ -92,8 +87,8 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
-            'table' => 'password_reset_tokens',
+            'provider' => 'store_accounts',
+            'table' => 'password_reset_tokens',//TODO: change this to password_reset_tokens
             'expire' => 60,
             'throttle' => 60,
         ],
